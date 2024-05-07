@@ -1,0 +1,24 @@
+import pandas as pd
+import openpyxl
+
+
+csv_file="Book1.csv"
+excel_file="Book2.xlsx"
+
+df_csv=pd.read_csv(csv_file)
+
+print("CSV Data:")
+print(f"File Name:{csv_file}")
+print(df_csv.info())
+print(df_csv.head())
+
+workbook=openpyxl.load_workbook(excel_file)
+
+worksheet=workbook["Sheet1"]
+print("\nExcel Data:")
+print(f"File Name:(excel_file)")
+
+first_row=next(worksheet.iter_rows(min_row=1,max_row=1))
+print("column names:")
+for cell in first_row:
+      print(cell.value)

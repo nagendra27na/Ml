@@ -1,0 +1,23 @@
+#write a program to visualise data set  to gain matplotlib or seaborn by plotting
+#barchart or scatter plotter
+from sklearn.datasets import load_iris
+import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
+#LOAD THE IRIS DATASET BY CALLING  THE FUNCTION
+iris=load_iris()
+#PLACE THE IRIS DATA IN A PANDAS  DATAFRAME 
+iris_df=pd.DataFrame(iris.data,columns=iris.feature_names)
+iris_df['target']=iris.target
+plt.figure(figsize=(14,7))
+plt.scatter(iris_df['sepal length (cm)'],iris_df['sepal width (cm)'],c=iris_df['target'],cmap='Accent',s=80,alpha=0.7)
+plt.xlabel('sepal length (cm)')
+plt.ylabel('petal length (cm)')
+plt.title('Scatter Plotter')
+plt.colorbar(label='Species')
+plt.show()
+plt.figure(figsize=(8,6))
+sns.countplot(x='target',data=iris_df,palette='viridis')
+plt.xlabel('Species')
+plt.ylabel('Count')
+plt.show()

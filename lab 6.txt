@@ -1,0 +1,37 @@
+lab 6
+from sklearn.datasets import load_iris
+from sklearn.preprocessing import LabelEncoder
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import StandardScaler
+import pandas as pd
+iris=load_iris()
+x=pd.DataFrame(iris.data,columns=iris.feature_names)
+y=pd.DataFrame(iris.target)
+print("unique categories before label encoding")
+print(set(y))
+label_encoder=LabelEncoder()
+target_encoded=label_encoder.fit_transform(y)
+print("unique categories after label encoding")
+print(set(target_encoded))
+data = {
+     'A': [1, 2, None, 4, 5],
+     'B': [None, 2, 3, None, 5],
+     'C': [1, 2, 3, 4, None]
+      }
+df = pd.DataFrame(data)
+
+# Imputation using SimpleImputer from scikit-learn
+imputer = SimpleImputer(strategy='mean')  # Other strategies: median, most_frequent, constant
+imputed_df = pd.DataFrame(imputer.fit_transform(df), columns=df.columns)
+
+print("Original DataFrame:")
+print(df)
+print("\nImputed DataFrame:")
+print(imputed_df)
+x=pd.DataFrame(iris.data,columns=iris.feature_names)
+print(x.head)
+scaler=StandardScaler()
+data_standardized=scaler.fit_transform(x)
+standardized_data_df=pd.DataFrame(data_standardized,columns=iris.feature_names)
+print("data after standardization")
+print(standardized_data_df.head())
